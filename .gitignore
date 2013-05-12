@@ -1,0 +1,6 @@
+target
+.directory
+*.class
+*.war
+*.jar
+*.ear

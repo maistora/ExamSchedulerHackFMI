@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>REST Test page</title>
+        <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="index.js"></script>
+        <link rel="stylesheet" href="style.css" type="text/css" />
+    </head>
+    <body>
+    	<div class="page">
+    		<div class="example" id="requestParam">
+		    	<h2>Pre-loaded data with request parameter (/getUserInfo?userId=1):</h2>
+		        <h3>Hello, <span class="name"></span>. Your credentials:</h3>
+		        <table>
+		        	<tr>
+		        		<td>Your username:</td>
+		        		<td class="username"></td>
+					</tr>
+		        	<tr>
+		        		<td>Your email:</td>
+		        		<td class="email"></td>
+					</tr>
+		        </table>
+	        </div>
+    		<div class="example" id="pathParam">
+		    	<h2>Pre-loaded data with path parameter (/getUserInfo/1):</h2>
+		        <h3>Hello, <span class="name"></span>. Your credentials:</h3>
+		        <table>
+		        	<tr>
+		        		<td>Your username:</td>
+		        		<td class="username"></td>
+					</tr>
+		        	<tr>
+		        		<td>Your email:</td>
+		        		<td class="email"></td>
+					</tr>
+		        </table>
+	        </div>
+    		<div class="example" id="pathParam">
+		    	<h2>Get all users:</h2>
+		        <table id="usersTable">
+		        	<thead>
+		        		<tr>
+		        			<th>ID</th>
+		        			<th>Name</th>
+		        			<th>Username</th>
+		        			<th>Email</th>
+		        		</tr>
+		        	</thead>
+		        	<tbody id="usersTableBody"></tbody>
+		        </table>
+	        </div>
+        </div>
+    </body>
+</html>

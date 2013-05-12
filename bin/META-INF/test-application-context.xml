@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+	http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.2.xsd
+	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+	
+	<!-- Database -->
+	<jdbc:embedded-database id="datasource" type="H2"></jdbc:embedded-database>
+	
+	<!-- Entity manager -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="datasource" />
+		<property name="persistenceUnitName" value="hibernate-unit-test" />
+	</bean>
+
+	<!-- Transaction manager -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	
+	<!-- Spring Data - repositories with JPA -->
+	<jpa:repositories base-package="com.maistora.spring.demo.database.repositories"></jpa:repositories>
+	
+	<!-- Enables automatic mapping of fund objects to and from JSON -->
+	<mvc:annotation-driven/>
+	
+	<!-- Defined dummy bean for context test  -->
+	<bean id="userEntityBean" class="com.maistora.spring.demo.database.entities.UserEntity">
+		<property name="userId">
+			<value type="java.lang.Long">0</value>
+		</property>
+		<property name="name">
+			<value>Ivan</value>
+		</property>
+		<property name="username">
+			<value>ivan</value>
+		</property>
+		<property name="email">
+			<value>ivan@mail.com</value>
+		</property>
+		<property name="password">
+			<value type="java.lang.String">123456</value>
+		</property>
+	</bean>
+
+	<!--  
+	Setup spring to pull in @Controller, @RequestMapping, etc Configuration scans specified packages  
+	for classes configured as Spring managed beans and automatically sets up objects annotated with  
+	@Controller, @Service etc.  
+    --> 
+	<context:component-scan base-package="com.maistora.spring.demo" />
+	
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />	
+	
+	<!-- This is needed so the ...MappingJacksonJsonView could work -->
+	<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+       <property name="objectMapper">
+            <ref bean="JacksonObjectMapper" />
+       </property>
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+	    <property name="objectMapper">
+	         <ref bean="JacksonObjectMapper" />
+	    </property>
+	</bean>
+	
+	<bean id="JacksonObjectMapper" class="org.codehaus.jackson.map.ObjectMapper" />
+	
+	<!-- Configures view for returning JSON to the client -->
+	<bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">  
+		<property name="contentType" value="text/plain"/>
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">  
+		<property name="messageConverters">
+			<util:list id="beanList">
+				<ref bean="jsonMessageConverter"/>
+			</util:list>
+		</property>  
+	</bean>
+	
+	<!-- Converts JSON to POJO and vice versa -->
+	<bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/> 
+</beans>
