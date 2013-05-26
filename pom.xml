@@ -28,7 +28,8 @@
 			    <url>http://localhost:8080/manager/text</url>
 	            <username>tomcat-eclipse</username>
 	            <password>tomcat-eclipse</password>
-	            <path>/${project.name}-${project.version}</path>
+	            <!--  if you want to get add the project's version in the path use ${project.version} variable -->
+	            <path>/${project.name}</path>
 	            <update>true</update>
 			</configuration>
 		</plugin>
