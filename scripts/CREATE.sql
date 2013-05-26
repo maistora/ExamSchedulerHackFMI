@@ -27,7 +27,7 @@ CREATE TABLE `course` (
   `name` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id_course`),
   UNIQUE KEY `id_course_UNIQUE` (`id_course`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,7 +50,7 @@ CREATE TABLE `course_teacher_group` (
   CONSTRAINT `course_teacher_group_course_fk` FOREIGN KEY (`id_course`) REFERENCES `course` (`id_course`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `course_teacher_group_group_fk` FOREIGN KEY (`id_group`) REFERENCES `group` (`id_group`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `course_teacher_group_teacher_fk` FOREIGN KEY (`id_teacher`) REFERENCES `teacher` (`id_teacher`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +74,7 @@ CREATE TABLE `exam` (
   UNIQUE KEY `id_exam_UNIQUE` (`id_exam`),
   KEY `id_course_idx` (`id_course_teacher_group`),
   CONSTRAINT `id_course_fk` FOREIGN KEY (`id_course_teacher_group`) REFERENCES `course` (`id_course`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +93,7 @@ CREATE TABLE `group` (
   UNIQUE KEY `id_group_UNIQUE` (`id_group`),
   KEY `id_specialty_idx` (`id_specialty`),
   CONSTRAINT `id_specialty_fk` FOREIGN KEY (`id_specialty`) REFERENCES `specialty` (`id_specialty`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -108,7 +108,7 @@ CREATE TABLE `specialty` (
   `name` varchar(128) DEFAULT NULL,
   PRIMARY KEY (`id_specialty`),
   UNIQUE KEY `id_pecialty_UNIQUE` (`id_specialty`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,13 +120,14 @@ DROP TABLE IF EXISTS `student`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `student` (
   `faculty_number` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) DEFAULT NULL,
-  `id_group` int(11) DEFAULT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_group` int(11) NOT NULL,
   PRIMARY KEY (`faculty_number`),
   UNIQUE KEY `faculty_number_UNIQUE` (`faculty_number`),
   KEY `id_group_idx` (`id_group`),
-  CONSTRAINT `id_group` FOREIGN KEY (`id_group`) REFERENCES `group` (`id_group`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  CONSTRAINT `id_group` FOREIGN KEY (`id_group`) REFERENCES `group` (`id_group`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `user_fk` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138,11 +139,12 @@ DROP TABLE IF EXISTS `teacher`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `teacher` (
   `id_teacher` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) DEFAULT NULL,
-  `title` varchar(64) DEFAULT NULL,
+  `id_user` int(11) NOT NULL,
+  `title` varchar(64) NOT NULL,
   PRIMARY KEY (`id_teacher`),
-  UNIQUE KEY `id_teacher_UNIQUE` (`id_teacher`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  UNIQUE KEY `id_teacher_UNIQUE` (`id_teacher`),
+  CONSTRAINT `user_fk` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,13 +156,13 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `username` varchar(255) DEFAULT NULL,
   `family_name` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -181,7 +183,7 @@ CREATE TABLE `vote` (
   KEY `id_student_idx` (`id_student`),
   CONSTRAINT `vote_exam_fk` FOREIGN KEY (`id_exam`) REFERENCES `exam` (`id_exam`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `vote_student_fk` FOREIGN KEY (`id_student`) REFERENCES `student` (`faculty_number`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
