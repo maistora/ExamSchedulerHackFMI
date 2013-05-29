@@ -1,17 +1,20 @@
-DROP TABLE IF EXISTS `course`;
-
-DROP TABLE IF EXISTS `course_teacher_group`;
-
-DROP TABLE IF EXISTS `exam`;
-
-DROP TABLE IF EXISTS `group`;
-
-DROP TABLE IF EXISTS `specialty`;
+DROP TABLE IF EXISTS `vote`;
 
 DROP TABLE IF EXISTS `student`;
 
+DROP TABLE IF EXISTS `exam`;
+
+DROP TABLE IF EXISTS `course_teacher_group`;
+
+DROP TABLE IF EXISTS `relation`;
+
+DROP TABLE IF EXISTS `group`;
+
 DROP TABLE IF EXISTS `teacher`;
+
+DROP TABLE IF EXISTS `specialty`;
+
+DROP TABLE IF EXISTS `course`;
 
 DROP TABLE IF EXISTS `users`;
 
-DROP TABLE IF EXISTS `vote`;

@@ -13,10 +13,10 @@ public class CourseDB {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id_course")
+	@Column(name = "id_course", unique = true, nullable = false, precision = 11, scale = 0)
 	private Long id;
 
-	@Column(name = "name")
+	@Column(name = "name", length = 255)
 	private String name;
 
 	public Long getId() {

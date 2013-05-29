@@ -7,19 +7,20 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.maistora.spring.demo.AbstractTest;
-import com.maistora.spring.demo.database.repositories.UserEntityRepository;
+import com.maistora.spring.demo.database.repositories.UserDbRepository;
 
 
 public class UserDAOTest extends AbstractTest {
 
 	@Autowired
-	private UserEntityRepository repository;
+	private UserDbRepository repository;
 	
 	private UserDAO dao;
 	
 	@Before
 	public void setup() {
 		dao = new UserDAO(entityManager, repository);
+		System.out.println("______________________________________________________________________" + dao);
 	}
 	
 	@Test
@@ -29,6 +30,6 @@ public class UserDAOTest extends AbstractTest {
 	
 	@Test
 	public void getUserByEmail() {
-		assertNotNull(dao.findUserByEmail("dummy@mail.com"));
+		assertNotNull(dao.findUserByEmail("admin@hackfmi.com"));
 	}
 }

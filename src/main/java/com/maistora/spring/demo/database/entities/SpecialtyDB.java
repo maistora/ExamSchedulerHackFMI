@@ -2,16 +2,21 @@ package com.maistora.spring.demo.database.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "specialty")
 public class SpecialtyDB {
 
-	@Column(name = "id_specialty")
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id_specialty", unique = true, nullable = false, precision = 11, scale = 0)
 	private Long id;
 
-	@Column(name = "name")
+	@Column(name = "name", length = 255, nullable = false)
 	private String name;
 
 	public Long getId() {

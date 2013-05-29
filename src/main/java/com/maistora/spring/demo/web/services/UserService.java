@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.maistora.spring.demo.database.dao.UserDAO;
-import com.maistora.spring.demo.database.entities.UserEntity;
-import com.maistora.spring.demo.database.repositories.UserEntityRepository;
+import com.maistora.spring.demo.database.entities.UserDB;
+import com.maistora.spring.demo.database.repositories.UserDbRepository;
 import com.maistora.spring.demo.database.transformers.UserTransformer;
 import com.maistora.spring.demo.web.dto.UserDTO;
 
@@ -22,29 +22,29 @@ public class UserService {
 	private EntityManager entityManager;
 	
 	@Autowired
-	private UserEntityRepository repository;
+	private UserDbRepository repository;
 
 	public UserDTO getUserById(Long userId) {
 		final UserDAO userDAO = new UserDAO(entityManager, repository);
-		final UserEntity user = userDAO.findUserById(userId);
+		final UserDB user = userDAO.findUserById(userId);
 		
 		return new UserTransformer().transform(user);
 	}
 	
 	public UserDTO getUserById(String email) {
 		final UserDAO userDAO = new UserDAO(entityManager, repository);
-		final UserEntity user = userDAO.findUserByEmail(email);
+		final UserDB user = userDAO.findUserByEmail(email);
 		
 		return new UserTransformer().transform(user);
 	}
 
 	public List<UserDTO> getUsers() {
 		final UserDAO userDAO = new UserDAO(entityManager, repository);
-		final List<UserEntity> dbUsers = userDAO.getUsers();
+		final List<UserDB> dbUsers = userDAO.getUsers();
 		final List<UserDTO> users = new ArrayList<UserDTO>();
 		final UserTransformer transformer = new UserTransformer();
 		
-		for (UserEntity dbUser : dbUsers) {
+		for (UserDB dbUser : dbUsers) {
 			users.add(transformer.transform(dbUser));
 		}
 		return users;

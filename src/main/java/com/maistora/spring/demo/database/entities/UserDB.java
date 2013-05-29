@@ -13,22 +13,25 @@ public class UserDB {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "user_id")
+	@Column(name = "id_user", unique = true, nullable = false, precision = 11, scale = 0)
 	private Long userId;
 
-	@Column(name = "name")
+	@Column(name = "name", length = 255, nullable = false)
 	private String name;
+
+	@Column(name = "fathers_name", length = 100)
+	private String fathersName;
 	
-	@Column(name = "family_name")
+	@Column(name = "family_name", length = 255, nullable = false)
 	private String familyName;
 
-	@Column(name = "username")
+	@Column(name = "username", length = 255, nullable = false)
 	private String username;
 
-	@Column(name = "password")
+	@Column(name = "password", length = 255, nullable = false)
 	private String password;
 
-	@Column(name = "email")
+	@Column(name = "email", length = 255, nullable = false)
 	private String email;
 	
 	public Long getUserId() {
@@ -45,6 +48,14 @@ public class UserDB {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getFathersName() {
+		return fathersName;
+	}
+
+	public void setFathersName(String fathersName) {
+		this.fathersName = fathersName;
 	}
 
 	public String getFamilyName() {
@@ -84,9 +95,11 @@ public class UserDB {
 		return String.format("=== User ===\n" +
 				"User ID: %d\n" +
 				"Name: %s\n" +
+				"Father's name: %s\n" +
+				"Family name: %s\n" +
 				"Username: %s\n" +
 				"Email: %s\n" +
 				"Password: %s\n", 
-				getUserId(), getName(), getUsername(), getEmail(), getPassword());
+				getUserId(), getName(), getFathersName(), getFamilyName(), getUsername(), getEmail(), getPassword());
 	}
 }

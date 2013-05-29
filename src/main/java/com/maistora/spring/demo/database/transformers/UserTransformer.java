@@ -1,11 +1,11 @@
 package com.maistora.spring.demo.database.transformers;
 
-import com.maistora.spring.demo.database.entities.UserEntity;
+import com.maistora.spring.demo.database.entities.UserDB;
 import com.maistora.spring.demo.web.dto.UserDTO;
 
 public class UserTransformer extends UserDTO {
 
-	public UserDTO transform(UserEntity user) {
+	public UserDTO transform(UserDB user) {
 		if (user == null) {
 			return null;
 		}
