@@ -26,7 +26,7 @@ public class VoteDB {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_student")
 	private StudentDB student;
-
+	
 	@Column(name = "vote_count", nullable = false, precision = 4, scale = 0)
 	private Long voteCount;
 

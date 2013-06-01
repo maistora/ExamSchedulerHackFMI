@@ -16,13 +16,13 @@ public class UserDB {
 	@Column(name = "id_user", unique = true, nullable = false, precision = 11, scale = 0)
 	private Long userId;
 
-	@Column(name = "name", length = 255, nullable = false)
+	@Column(name = "name", length = 100, nullable = false)
 	private String name;
 
 	@Column(name = "fathers_name", length = 100)
 	private String fathersName;
 	
-	@Column(name = "family_name", length = 255, nullable = false)
+	@Column(name = "family_name", length = 100, nullable = false)
 	private String familyName;
 
 	@Column(name = "username", length = 255, nullable = false)

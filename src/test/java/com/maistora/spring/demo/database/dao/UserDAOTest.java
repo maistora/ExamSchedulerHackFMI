@@ -20,16 +20,15 @@ public class UserDAOTest extends AbstractTest {
 	@Before
 	public void setup() {
 		dao = new UserDAO(entityManager, repository);
-		System.out.println("______________________________________________________________________" + dao);
 	}
 	
 	@Test
 	public void getUserById() {
-		assertNotNull(dao.findUserById(1L));
+		assertNotNull(dao.findUserById(11L));
 	}
 	
 	@Test
 	public void getUserByEmail() {
-		assertNotNull(dao.findUserByEmail("admin@hackfmi.com"));
+		assertNotNull(dao.findUserByEmail("admin"));
 	}
 }

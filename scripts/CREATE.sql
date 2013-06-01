@@ -126,9 +126,9 @@ CREATE TABLE `student` (
 
 CREATE TABLE `vote` (
   `id_vote` int(11) NOT NULL AUTO_INCREMENT,
-  `id_student` int(11) DEFAULT NULL,
-  `vote_count` int(4) DEFAULT 0,
-  `id_exam` int(11) DEFAULT NULL,
+  `id_student` int(11) NOT NULL,
+  `vote_count` int(4) NOT NULL DEFAULT 0,
+  `id_exam` int(11) NOT NULL,
   PRIMARY KEY (`id_vote`),
   UNIQUE KEY `id_vote_UNIQUE` (`id_vote`),
   KEY `vote_id_exam_idx` (`id_exam`),
