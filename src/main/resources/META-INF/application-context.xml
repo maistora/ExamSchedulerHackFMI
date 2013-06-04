@@ -30,14 +30,6 @@
 	    <property name="password" value="${db.pass}"/>
 	</bean>
 	
-	<!-- Database -->	
-<!-- 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
-<!-- 	    <property name="driverClassName" value="com.mysql.jdbc.Driver"/> -->
-<!-- 	    <property name="url" value="jdbc:mysql://localhost:3306/hackfmi_db"/> -->
-<!-- 	    <property name="username" value="hackfmi"/> -->
-<!-- 	    <property name="password" value="hackfmi"/> -->
-<!-- 	</bean> -->
-	
 	<!-- Entity manager -->
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -51,7 +43,7 @@
 	</bean>
 	
 	<!-- Spring Data - repositories with JPA -->
-	<jpa:repositories base-package="com.maistora.spring.demo.database.repositories"></jpa:repositories>
+	<jpa:repositories base-package="com.maistora.hackfmi.database.repositories"></jpa:repositories>
 	
 	<!-- Enables automatic mapping of fund objects to and from JSON -->
 	<mvc:annotation-driven/>
@@ -61,7 +53,7 @@
 	for classes configured as Spring managed beans and automatically sets up objects annotated with  
 	@Controller, @Service etc.  
     --> 
-	<context:component-scan base-package="com.maistora.spring.demo" />
+	<context:component-scan base-package="com.maistora.hackfmi" />
 	
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />	
 	
