@@ -30,6 +30,7 @@ public class GroupDB {
 	@Column(name = "year", length = 4, nullable = false, precision = 4, scale = 0)
 	private Long year;
 
+	// TODO see if number should be string value to cover values like a, b, c .. etc.
 	@Column(name = "number", length = 4, nullable = false, precision = 4, scale = 0)
 	private Long number;
 
@@ -65,4 +66,12 @@ public class GroupDB {
 		this.number = number;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("=== Group ===\n" +
+				"ID: %d\n" +
+				"Specialty: %s\n" +
+				"Year: %d\n" +
+				"Number: %d\n", getId(), getSpecialty(), getYear(), getNumber());
+	}
 }

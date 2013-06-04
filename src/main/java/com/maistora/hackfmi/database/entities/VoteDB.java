@@ -67,4 +67,12 @@ public class VoteDB {
 		this.exam = exam;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("=== Vote ===\n" +
+				"ID: %d\n" +
+				"Student: %s\n" +
+				"Vote count: %d\n" +
+				"Exam: %s\n", getId(), getStudent(), getVoteCount(), getExam());
+	}
 }

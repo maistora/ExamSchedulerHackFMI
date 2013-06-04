@@ -111,4 +111,20 @@ public class ExamDB {
 		this.description = description;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("=== Exam ===\n" +
+				"ID: %d\n" +
+				"Start hour: %s\n" +
+				"End hour: %s\n" +
+				"Relation: %s\n" +
+				"Is proposal?: %s\n" +
+				"Is final exam?: %s\n" +
+				"Room number: %s\n" +
+				"Description: %s\n", 
+				getId(), getStartHour(), getEndHour(), 
+				getRelation(), isProposal(), isFinalExam(), 
+				getRoomNumber(), getDescription());
+	}
+
 }

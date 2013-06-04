@@ -67,4 +67,12 @@ public class StudentDB {
 		this.group = group;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("=== Student ===\n" +
+				"ID: %d\n" +
+				"FN: %s\n" +
+				"User: %s\n" +
+				"Group: %s\n", getId(), getFacultyNumber(), getUser(), getGroup());
+	}
 }

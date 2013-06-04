@@ -69,4 +69,12 @@ public class RelationDB {
 		this.teacher = teacher;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("=== Relation ===\n" +
+				"ID: %d\n" +
+				"Course: %s\n" +
+				"Group: %s\n" +
+				"Teacher: %s\n", getId(), getCourse(), getGroup(), getTeacher());
+	}
 }
